@@ -1,4 +1,6 @@
 import random
+MINIMUM_SCORE = 0
+MAXIMUM_SCORE = 100
 
 def main():
     """Get user score and print it result."""
@@ -13,7 +15,7 @@ def generate_random_score():
 
 def determine_score(score):
     """Determine user's result based on the score."""
-    if score < 0 or score > 100:
+    if score < MINIMUM_SCORE or score > MAXIMUM_SCORE:
         return "Invalid score"
     if score < 50:
         return "Bad"
