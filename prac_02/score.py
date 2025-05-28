@@ -7,7 +7,7 @@ def main():
     # score = float(input("Enter score: "))
     score = generate_random_score()
     result = determine_score(score)
-    print(f"Your score - {score} is {result}")
+    print(f"Your score {score} is {result}")
 
 def generate_random_score():
     """Generate a random score that is in between 0-100."""
