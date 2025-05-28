@@ -11,7 +11,7 @@ def main():
 
 def generate_random_score():
     """Generate a random score that is in between 0-100."""
-    return random.randint(0,100)
+    return random.randint(MINIMUM_SCORE,MAXIMUM_SCORE)
 
 def determine_score(score):
     """Determine user's result based on the score."""
