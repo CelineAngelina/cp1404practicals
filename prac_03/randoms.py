@@ -1,8 +1,8 @@
 import random
 
-print(random.randint(5, 20))  # 14, 6, 9, 7, 19, 6
-print(random.randrange(3, 10, 2))  # 3, 7, 7, 9, 5, 7
-print(random.uniform(2.5, 5.5))  # 4.392172220792992, 4.201107450198835, 4.966304069639943, 3.0107908091933284, 4.339879891333248, 3.3989336163146238
+print(random.randint(5, 20))  # line 1
+print(random.randrange(3, 10, 2))  # line 2
+print(random.uniform(2.5, 5.5))  # line 3
 
 # What did you see on line 1?
     # 14, 6, 9, 7, 19, 6
