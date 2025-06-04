@@ -10,7 +10,7 @@ def main():
     print(f"Your score {score} is {result}")
 
 def generate_random_score():
-    """Generate a random score that is in between 0-100."""
+    """Generate a random.txt score that is in between 0-100."""
     return random.randint(MINIMUM_SCORE,MAXIMUM_SCORE)
 
 def determine_score(score):
