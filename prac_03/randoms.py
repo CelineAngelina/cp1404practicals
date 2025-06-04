@@ -23,3 +23,4 @@ print(random.uniform(2.5, 5.5))  # 4.392172220792992, 4.201107450198835, 4.96630
     # The smallest number I saw was 3.0107908091933284 and the largest was 4.966304069639943
 
 # Write code, not a comment, to produce a random number between 1 and 100 inclusive.
+print(random.randint(1, 101))
