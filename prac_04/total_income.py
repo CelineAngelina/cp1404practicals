@@ -9,7 +9,6 @@ def main():
 
     print_report(incomes, number_of_month)
 
-
 def print_report(incomes, number_of_month):
     """Print income report showing monthly income and total amount."""
     print("\nIncome Report\n-------------")
@@ -18,6 +17,5 @@ def print_report(incomes, number_of_month):
         income = incomes[month - 1]
         total += income
         print("Month {:2} - Income: ${:10.2f} Total: ${:10.2f}".format(month, income, total))
-
 
 main()
