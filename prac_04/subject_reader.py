@@ -24,7 +24,7 @@ def load_data():
     return data
 
 def print_subject_details(data):
-    """Display subject details where each line shows the subject code, lecturer name, and number of students. ."""
+    """Display subject details where each line shows the subject code, lecturer name, and number of students."""
     for i in range(len(data)):
         print(f"{data[i][0]} is taught by {data[i][1]:12} and has {data[i][2]:3} students")
 
