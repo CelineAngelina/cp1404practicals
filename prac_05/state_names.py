@@ -3,6 +3,7 @@ CODE_TO_NAME = {"QLD": "Queensland", "NSW": "New South Wales", "NT": "Northern T
 print(CODE_TO_NAME)
 states = []
 
+#LBYL approach
 state_code = input("Enter short state: ").upper()
 while state_code != "":
     if state_code in CODE_TO_NAME:
@@ -10,6 +11,20 @@ while state_code != "":
     else:
         print("Invalid short state")
     state_code = input("Enter short state: ").upper()
+print()
+for code, name in states:
+    print(f"{code:3} is {name}")
+
+
+# EAFP approach
+state_code = input("Enter short state: ").upper()
+while state_code != "":
+    try:
+        states.append((state_code, CODE_TO_NAME[state_code]))
+    except KeyError:
+        print("Invalid short state")
+    state_code = input("Enter short state: ").upper()
+
 print()
 for code, name in states:
     print(f"{code:3} is {name}")
