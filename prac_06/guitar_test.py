@@ -1,3 +1,9 @@
+"""
+guitar_test
+Estimate: 20 minutes
+Actual:   15 minutes
+"""
+
 from prac_06.guitar import Guitar
 
 guitar1 = Guitar("Gibson L-5 CES", 1922, 16035.40)

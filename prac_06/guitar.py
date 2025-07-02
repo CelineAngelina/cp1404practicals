@@ -1,3 +1,9 @@
+"""
+guitar
+Estimate: 20 minutes
+Actual:   32 minutes
+"""
+
 CURRENT_YEAR = 2025
 VINTAGE_AGE = 50
 
