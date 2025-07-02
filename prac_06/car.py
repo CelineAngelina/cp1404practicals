@@ -4,6 +4,7 @@ class Car:
     def __init__(self, name="", fuel=0):
         """Initialise a Car instance.
 
+        name: string, name of cars
         fuel: float, one unit of fuel drives one kilometre
         """
         self.name = name
@@ -29,4 +30,5 @@ class Car:
         return distance
 
     def __str__(self):
+        """Return a string that includes name, fuel unit and odometer reading."""
         return f"{self.name}, fuel={self.fuel}, odometer={self._odometer}"
