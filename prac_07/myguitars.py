@@ -10,6 +10,7 @@ def main():
         print(guitar)
 
 def load_guitar_data(guitars):
+    """Read guitar data from CSV file."""
     in_file = open('guitars.csv', 'r')
     for line in in_file:
         parts = line.strip().split(',')
