@@ -1,3 +1,5 @@
+import datetime
+
 class Project:
     """Represent a Project with name, start date, priority, cost estimation, and completion percentage."""
     def __init__(self, name="", start_date="", priority=0, cost_estimate=0.0, completion_percentage=0):
@@ -15,6 +17,10 @@ class Project:
     def __lt__(self, other):
         """Compare one project to another by priority."""
         return self.priority < other.priority
+
+    def get_start_date(self):
+        """Return start date as a datetime.date object."""
+        return datetime.datetime.strptime(self.start_date, "%d/%m/%Y").date()
 
 
 # def run_test():
