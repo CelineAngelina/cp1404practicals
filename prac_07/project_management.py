@@ -38,7 +38,36 @@ def main():
             break
 
         elif choice == "U":
-            break
+            projects = load_project(FILENAME)
+            for i, project in enumerate(projects, start=0):
+                print(f"{i} {project}")
+
+            project_choice = int(input("Project choice: "))
+            while project_choice >= len(projects):
+                print("Invalid choice")
+                project_choice = int(input("Project choice: "))
+            selected_project = projects[project_choice]
+            print(selected_project)
+
+            new_percentage = input("New Percentage: ")
+            if new_percentage:
+                selected_project.completion_percentage = int(new_percentage)
+
+            new_priority = input("New Priority: ")
+            if new_priority:
+                selected_project.priority = int(new_priority)
+
+            with open(FILENAME, 'r') as in_file:
+                lines = in_file.readlines()
+
+            header = lines[0]
+            project_lines = lines[1:]
+
+            project_lines[project_choice] = f"{selected_project.name}\t{selected_project.start_date}\t{selected_project.priority}\t{selected_project.cost_estimate}\t{selected_project.completion_percentage}\n"
+
+            with open(FILENAME, 'w') as out_file:
+                out_file.write(header)
+                out_file.writelines(project_lines)
 
         else:
             print("Invalid choice")
@@ -71,9 +100,9 @@ def display_completed_and_incomplete_projects(projects):
     completed_projects = [completed_project for completed_project in projects if
                           completed_project.completion_percentage >= 100]
     incomplete_projects.sort()
-    completed_projects.sort()
     print("Incomplete projects:")
     display_projects(incomplete_projects)
+    completed_projects.sort()
     print("Complete projects:")
     display_projects(completed_projects)
 
