@@ -46,17 +46,6 @@ def main():
         choice = input(">>> ").upper()
     print("Thank you for using custom-built project management software.")
 
-
-def filter_project(projects):
-    """Filter and display only the projects that start on or after the date the user enters."""
-    project_after_date = input("Show projects that start after date (dd/mm/yy): ")
-    filter_date = datetime.datetime.strptime(project_after_date, "%d/%m/%Y").date()
-    filtered_projects = [project for project in projects if
-                         datetime.datetime.strptime(project.start_date, "%d/%m/%Y").date() >= filter_date]
-    filtered_projects.sort()
-    display_projects(filtered_projects)
-
-
 def load_project(prompt):
     """Load projects from the prompt."""
     projects = []
@@ -144,8 +133,7 @@ def get_new_project_details():
     new_project_priority = int(input("Priority: "))
     new_project_cost_estimate = float(input("Cost estimate: $"))
     new_project_percentage_complete = int(input("Percent complete:"))
-    return Project(new_project_cost_estimate, new_project_name, new_project_percentage_complete, new_project_priority,
-                   new_project_start_date)
+    return Project(new_project_name, new_project_start_date, new_project_priority, new_project_cost_estimate, new_project_percentage_complete)
 
 def add_new_project():
     """Prompt user for a new project and append it to the projects file."""
@@ -153,5 +141,14 @@ def add_new_project():
     with open(FILENAME, 'a') as out_file:
         out_file.write(
             f"{new_project.name}\t{new_project.start_date}\t{new_project.priority}\t{new_project.cost_estimate}\t{new_project.completion_percentage}\n")
+
+def filter_project(projects):
+    """Filter and display only the projects that start on or after the date the user enters."""
+    project_after_date = input("Show projects that start after date (dd/mm/yy): ")
+    filter_date = datetime.datetime.strptime(project_after_date, "%d/%m/%Y").date()
+    filtered_projects = [project for project in projects if
+                         datetime.datetime.strptime(project.start_date, "%d/%m/%Y").date() >= filter_date]
+    filtered_projects.sort()
+    display_projects(filtered_projects)
 
 main()
