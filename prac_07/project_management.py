@@ -11,6 +11,7 @@ MENU = "- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter p
 FILENAME = "projects.txt"
 
 def main():
+    """"""
     print("Welcome to Pythonic Project Management")
     projects = load_project(FILENAME)
     print(f"Loaded {len(projects)} projects from {FILENAME}")
@@ -64,6 +65,7 @@ def load_project(prompt):
 
 
 def display_completed_and_incomplete_projects(projects):
+    """Display completed and incomplete projects, both sorted by priority."""
     incomplete_projects = [incomplete_project for incomplete_project in projects if
                            incomplete_project.completion_percentage < 100]
     completed_projects = [completed_project for completed_project in projects if
@@ -76,6 +78,7 @@ def display_completed_and_incomplete_projects(projects):
 
 
 def display_projects(title, projects):
+    """Display list of projects with a given title."""
     print(title)
     for projects in projects:
         print(f"\t{projects}")
