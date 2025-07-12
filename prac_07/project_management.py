@@ -29,28 +29,33 @@ def main():
             break
 
         elif choice == "D":
+            projects = load_project(FILENAME)
             display_completed_and_incomplete_projects(projects)
-
         elif choice == "F":
             projects = load_project(FILENAME)
-            project_after_date = input("Show projects that start after date (dd/mm/yy): ")
-            filter_date = datetime.datetime.strptime(project_after_date, "%d/%m/%Y").date()
-            filtered_projects = [project for project in projects if
-                                 datetime.datetime.strptime(project.start_date, "%d/%m/%Y").date() >= filter_date]
-            filtered_projects.sort()
-            for project in filtered_projects:
-                print(project)
-
+            filter_project(projects)
         elif choice == "A":
             print("Let's add a new project")
             add_new_project()
         elif choice == "U":
+            projects = load_project(FILENAME)
             update_project_choice(projects)
         else:
             print("Invalid choice")
         print(MENU)
         choice = input(">>> ").upper()
     print("Thank you for using custom-built project management software.")
+
+
+def filter_project(projects):
+    """Filter and display only the projects that start on or after the date the user enters."""
+    project_after_date = input("Show projects that start after date (dd/mm/yy): ")
+    filter_date = datetime.datetime.strptime(project_after_date, "%d/%m/%Y").date()
+    filtered_projects = [project for project in projects if
+                         datetime.datetime.strptime(project.start_date, "%d/%m/%Y").date() >= filter_date]
+    filtered_projects.sort()
+    display_projects(filtered_projects)
+
 
 def load_project(prompt):
     """Load projects from the prompt."""
@@ -70,7 +75,6 @@ def load_project(prompt):
 
 def display_completed_and_incomplete_projects(projects):
     """Display completed and incomplete projects, both sorted by priority."""
-    projects = load_project(FILENAME)
     incomplete_projects = [incomplete_project for incomplete_project in projects if
                            incomplete_project.completion_percentage < 100]
     completed_projects = [completed_project for completed_project in projects if
@@ -89,7 +93,6 @@ def display_projects(projects):
 
 def update_project_choice(projects):
     """Allow the user to select a project and update its percentage and/or priority."""
-    projects = load_project(FILENAME)
     for i, project in enumerate(projects, start=0):
         print(f"{i} {project}")
     project_choice = get_valid_project_choice(projects)
