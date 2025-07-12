@@ -83,30 +83,8 @@ def display_projects(projects):
     for projects in projects:
         print(f"\t{projects}")
 
-def get_valid_project_choice(projects):
-    """"""
-    project_choice = int(input("Project choice: "))
-    while project_choice >= len(projects):
-        print("Invalid choice")
-        project_choice = int(input("Project choice: "))
-    return project_choice
-
-def save_project_details():
-    """"""
-    with open(FILENAME, 'r') as in_file:
-        lines = in_file.readlines()
-    header = lines[0]
-    project_lines = lines[1:]
-    return header, project_lines
-
-def write_updated_project_details(header, project_lines):
-    """"""
-    with open(FILENAME, 'w') as out_file:
-        out_file.write(header)
-        out_file.writelines(project_lines)
-
 def update_project_choice(projects):
-    """"""
+    """Allow the user to select a project and update its percentage and/or priority."""
     for i, project in enumerate(projects, start=0):
         print(f"{i} {project}")
     project_choice = get_valid_project_choice(projects)
@@ -122,5 +100,27 @@ def update_project_choice(projects):
     project_lines[
         project_choice] = f"{selected_project.name}\t{selected_project.start_date}\t{selected_project.priority}\t{selected_project.cost_estimate}\t{selected_project.completion_percentage}\n"
     write_updated_project_details(header, project_lines)
+
+def get_valid_project_choice(projects):
+    """Prompt valid project choice from user."""
+    project_choice = int(input("Project choice: "))
+    while project_choice >= len(projects):
+        print("Invalid choice")
+        project_choice = int(input("Project choice: "))
+    return project_choice
+
+def save_project_details():
+    """Load all project details from the file into memory before updating."""
+    with open(FILENAME, 'r') as in_file:
+        lines = in_file.readlines()
+    header = lines[0]
+    project_lines = lines[1:]
+    return header, project_lines
+
+def write_updated_project_details(header, project_lines):
+    """Overwrite the file with the header and updated project details."""
+    with open(FILENAME, 'w') as out_file:
+        out_file.write(header)
+        out_file.writelines(project_lines)
 
 main()
