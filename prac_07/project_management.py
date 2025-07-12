@@ -21,8 +21,7 @@ def main():
         if choice == "L":
             filename = input("Enter the filename: ")
             projects = load_project(filename)
-            for project in projects:
-                print(project)
+            display_projects("Projects:", projects)
 
         elif choice == "S":
             break
@@ -42,23 +41,9 @@ def main():
 
         else:
             print("Invalid choice")
+        print(MENU)
         choice = input(">>> ").upper()
         print("Thank you for using custom-built project management software.")
-
-
-def display_completed_and_incomplete_projects(projects):
-    incomplete_projects = [incomplete_project for incomplete_project in projects if
-                           incomplete_project.completion_percentage < 100]
-    completed_projects = [completed_project for completed_project in projects if
-                          completed_project.completion_percentage >= 100]
-    incomplete_projects.sort()
-    completed_projects.sort()
-    print("Incomplete projects:")
-    for projects in incomplete_projects:
-        print(f"\t{projects}")
-    print("Completed projects:")
-    for projects in completed_projects:
-        print(f"\t{projects}")
 
 
 def load_project(prompt):
@@ -77,5 +62,22 @@ def load_project(prompt):
             projects.append(project)
     return projects
 
+
+def display_completed_and_incomplete_projects(projects):
+    incomplete_projects = [incomplete_project for incomplete_project in projects if
+                           incomplete_project.completion_percentage < 100]
+    completed_projects = [completed_project for completed_project in projects if
+                          completed_project.completion_percentage >= 100]
+    incomplete_projects.sort()
+    completed_projects.sort()
+
+    display_projects("Incomplete projects:", incomplete_projects)
+    display_projects("Completed projects:", completed_projects)
+
+
+def display_projects(title, projects):
+    print(title)
+    for projects in projects:
+        print(f"\t{projects}")
 
 main()
