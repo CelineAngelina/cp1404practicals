@@ -26,23 +26,15 @@ def main():
             display_projects(projects)
         elif choice == "S":
             save_filename = input("Enter filename to save projects: ")
-            with open(save_filename, 'w') as out_file:
-                out_file.write("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n")
-                for project in projects:
-                    out_file.write(
-                        f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}\n")
-
+            save_projects_to_file(projects, save_filename)
         elif choice == "D":
-            projects = load_project(FILENAME)
             display_completed_and_incomplete_projects(projects)
         elif choice == "F":
-            projects = load_project(FILENAME)
             filter_project(projects)
         elif choice == "A":
             print("Let's add a new project")
             add_new_project()
         elif choice == "U":
-            projects = load_project(FILENAME)
             update_project_choice(projects)
         else:
             print("Invalid choice")
@@ -154,5 +146,13 @@ def filter_project(projects):
                          datetime.datetime.strptime(project.start_date, "%d/%m/%Y").date() >= filter_date]
     filtered_projects.sort()
     display_projects(filtered_projects)
+
+def save_projects_to_file(projects, save_filename):
+    """Save projects to file."""
+    with open(save_filename, 'w') as out_file:
+        out_file.write("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n")
+        for project in projects:
+            out_file.write(
+                f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}\n")
 
 main()
