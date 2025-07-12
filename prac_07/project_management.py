@@ -103,11 +103,17 @@ def update_project_choice(projects):
 
 def get_valid_project_choice(projects):
     """Prompt valid project choice from user."""
-    project_choice = int(input("Project choice: "))
-    while project_choice >= len(projects):
-        print("Invalid choice")
-        project_choice = int(input("Project choice: "))
-    return project_choice
+    is_valid_input = False
+    while not is_valid_input:
+        try:
+            project_choice = int(input("Project choice: "))
+            if project_choice >= len(projects):
+                print("Invalid choice")
+            else:
+                is_valid_input = True
+                return project_choice
+        except ValueError:
+            print("Invalid input; enter a valid number")
 
 def save_project_details():
     """Load all project details from the file into memory before updating."""
