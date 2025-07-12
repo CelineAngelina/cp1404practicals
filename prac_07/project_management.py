@@ -4,6 +4,8 @@ Estimate: 2 hours
 Actual:
 start 11:09
 """
+from operator import attrgetter
+from xml.etree.ElementTree import indent
 
 from prac_07.project import Project
 import datetime
@@ -34,12 +36,16 @@ def main():
         elif choice == "A":
             print("Let's add a new project")
             add_new_project()
+            projects = load_project(FILENAME)
         elif choice == "U":
             update_project_choice(projects)
         else:
             print("Invalid choice")
         print(MENU)
         choice = input(">>> ").upper()
+    save_decision = input(f"Would you like to save to {FILENAME}? ")
+    if save_decision == "yes":
+        print(f"Projects saved to {FILENAME}")
     print("Thank you for using custom-built project management software.")
 
 def load_project(prompt):
@@ -143,8 +149,8 @@ def filter_project(projects):
     project_after_date = input("Show projects that start after date (dd/mm/yy): ")
     filter_date = datetime.datetime.strptime(project_after_date, "%d/%m/%Y").date()
     filtered_projects = [project for project in projects if
-                         datetime.datetime.strptime(project.start_date, "%d/%m/%Y").date() >= filter_date]
-    filtered_projects.sort()
+                         project.get_start_date() >= filter_date]
+    filtered_projects.sort(key=Project.get_start_date)
     display_projects(filtered_projects)
 
 def save_projects_to_file(projects, save_filename):
