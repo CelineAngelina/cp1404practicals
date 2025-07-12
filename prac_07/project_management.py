@@ -37,7 +37,6 @@ def main():
         elif choice == "A":
             print("Let's add a new project")
             add_new_project()
-
         elif choice == "U":
             projects = load_project(FILENAME)
             update_project_choice(projects)
@@ -46,25 +45,6 @@ def main():
         print(MENU)
         choice = input(">>> ").upper()
     print("Thank you for using custom-built project management software.")
-
-
-def add_new_project():
-    """"""
-    new_project = get_new_project_details()
-    with open(FILENAME, 'a') as out_file:
-        out_file.write(
-            f"{new_project.name}\t{new_project.start_date}\t{new_project.priority}\t{new_project.cost_estimate}\t{new_project.completion_percentage}\n")
-
-
-def get_new_project_details():
-    """"""
-    new_project_name = input("Name: ").title()
-    new_project_start_date = input("Start date (dd/mm/yy): ")
-    new_project_priority = int(input("Priority: "))
-    new_project_cost_estimate = float(input("Cost estimate: $"))
-    new_project_percentage_complete = int(input("Percent complete:"))
-    return Project(new_project_cost_estimate, new_project_name, new_project_percentage_complete, new_project_priority, new_project_start_date)
-
 
 def load_project(prompt):
     """Load projects from the prompt."""
@@ -146,5 +126,21 @@ def write_updated_project_details(header, project_lines):
     with open(FILENAME, 'w') as out_file:
         out_file.write(header)
         out_file.writelines(project_lines)
+
+def get_new_project_details():
+    """Get new project details from the user and return a Project instance."""
+    new_project_name = input("Name: ").title()
+    new_project_start_date = input("Start date (dd/mm/yy): ")
+    new_project_priority = int(input("Priority: "))
+    new_project_cost_estimate = float(input("Cost estimate: $"))
+    new_project_percentage_complete = int(input("Percent complete:"))
+    return Project(new_project_cost_estimate, new_project_name, new_project_percentage_complete, new_project_priority, new_project_start_date)
+
+def add_new_project():
+    """Prompt user for a new project and append it to the projects file."""
+    new_project = get_new_project_details()
+    with open(FILENAME, 'a') as out_file:
+        out_file.write(
+            f"{new_project.name}\t{new_project.start_date}\t{new_project.priority}\t{new_project.cost_estimate}\t{new_project.completion_percentage}\n")
 
 main()
