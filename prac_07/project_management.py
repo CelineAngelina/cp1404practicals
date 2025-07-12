@@ -23,7 +23,10 @@ def main():
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "L":
-            load_project()
+            filename = input("Enter the filename: ")
+            projects = load_project(filename)
+            for project in projects:
+                print(project)
 
         elif choice == "S":
             break
@@ -46,13 +49,16 @@ def main():
                         incomplete_projects.append(project)
                     else:
                         completed_projects.append(project)
-                print("Incomplete projects:")
-                for projects in incomplete_projects:
-                    print(f"\t{projects}")
 
-                print("Completed projects:")
-                for projects in completed_projects:
-                    print(f"\t{projects}")
+            incomplete_projects.sort()
+            print("Incomplete projects:")
+            for projects in incomplete_projects:
+                print(f"\t{projects}")
+
+            completed_projects.sort()
+            print("Completed projects:")
+            for projects in completed_projects:
+                print(f"\t{projects}")
 
         elif choice == "F":
             break
@@ -69,10 +75,10 @@ def main():
         print("Thank you for using custom-built project management software.")
 
 
-def load_project():
-    """Prompt the user for a filename to load projects from and load them."""
-    filename = input("Enter the filename: ")
-    with open(filename, 'r') as in_file:
+def load_project(prompt):
+    """Load projects from the prompt."""
+    projects = []
+    with open(prompt, 'r') as in_file:
         in_file.readline()
         for line in in_file:
             parts = line.strip().split('\t')
@@ -82,7 +88,8 @@ def load_project():
             cost_estimate = float(parts[3])
             percent_complete = int(parts[4])
             project = Project(name, start_date, priority, cost_estimate, percent_complete)
-            print(project)
+            projects.append(project)
+    return projects
 
 
 main()
