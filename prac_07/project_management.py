@@ -32,23 +32,9 @@ def main():
             break
 
         elif choice == "D":
-            incomplete_projects = []
-            completed_projects = []
-            with open(FILENAME, 'r') as in_file:
-                in_file.readline()
-                for line in in_file:
-                    parts = line.strip().split('\t')
-                    name = parts[0]
-                    start_date = parts[1]
-                    priority = int(parts[2])
-                    cost_estimate = float(parts[3])
-                    percent_complete = int(parts[4])
-                    project = Project(name, start_date, priority, cost_estimate, percent_complete)
-
-                    if percent_complete < 100:
-                        incomplete_projects.append(project)
-                    else:
-                        completed_projects.append(project)
+            projects = load_project(FILENAME)
+            incomplete_projects = [incomplete_project for incomplete_project in projects if incomplete_project.completion_percentage < 100]
+            completed_projects = [completed_project for completed_project in projects if completed_project.completion_percentage >= 100]
 
             incomplete_projects.sort()
             print("Incomplete projects:")
