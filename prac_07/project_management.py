@@ -24,9 +24,13 @@ def main():
             filename = input("Enter the filename: ")
             projects = load_project(filename)
             display_projects(projects)
-
         elif choice == "S":
-            break
+            save_filename = input("Enter filename to save projects: ")
+            with open(save_filename, 'w') as out_file:
+                out_file.write("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n")
+                for project in projects:
+                    out_file.write(
+                        f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}\n")
 
         elif choice == "D":
             projects = load_project(FILENAME)
@@ -132,7 +136,7 @@ def get_new_project_details():
     new_project_start_date = input("Start date (dd/mm/yy): ")
     new_project_priority = int(input("Priority: "))
     new_project_cost_estimate = float(input("Cost estimate: $"))
-    new_project_percentage_complete = int(input("Percent complete:"))
+    new_project_percentage_complete = int(input("Percent complete: "))
     return Project(new_project_name, new_project_start_date, new_project_priority, new_project_cost_estimate, new_project_percentage_complete)
 
 def add_new_project():
