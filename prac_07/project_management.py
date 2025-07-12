@@ -39,35 +39,7 @@ def main():
 
         elif choice == "U":
             projects = load_project(FILENAME)
-            for i, project in enumerate(projects, start=0):
-                print(f"{i} {project}")
-
-            project_choice = int(input("Project choice: "))
-            while project_choice >= len(projects):
-                print("Invalid choice")
-                project_choice = int(input("Project choice: "))
-            selected_project = projects[project_choice]
-            print(selected_project)
-
-            new_percentage = input("New Percentage: ")
-            if new_percentage:
-                selected_project.completion_percentage = int(new_percentage)
-
-            new_priority = input("New Priority: ")
-            if new_priority:
-                selected_project.priority = int(new_priority)
-
-            with open(FILENAME, 'r') as in_file:
-                lines = in_file.readlines()
-
-            header = lines[0]
-            project_lines = lines[1:]
-
-            project_lines[project_choice] = f"{selected_project.name}\t{selected_project.start_date}\t{selected_project.priority}\t{selected_project.cost_estimate}\t{selected_project.completion_percentage}\n"
-
-            with open(FILENAME, 'w') as out_file:
-                out_file.write(header)
-                out_file.writelines(project_lines)
+            update_project_choice(projects)
 
         else:
             print("Invalid choice")
@@ -106,10 +78,49 @@ def display_completed_and_incomplete_projects(projects):
     print("Complete projects:")
     display_projects(completed_projects)
 
-
 def display_projects(projects):
     """Display list of projects."""
     for projects in projects:
         print(f"\t{projects}")
+
+def get_valid_project_choice(projects):
+    """"""
+    project_choice = int(input("Project choice: "))
+    while project_choice >= len(projects):
+        print("Invalid choice")
+        project_choice = int(input("Project choice: "))
+    return project_choice
+
+def save_project_details():
+    """"""
+    with open(FILENAME, 'r') as in_file:
+        lines = in_file.readlines()
+    header = lines[0]
+    project_lines = lines[1:]
+    return header, project_lines
+
+def write_updated_project_details(header, project_lines):
+    """"""
+    with open(FILENAME, 'w') as out_file:
+        out_file.write(header)
+        out_file.writelines(project_lines)
+
+def update_project_choice(projects):
+    """"""
+    for i, project in enumerate(projects, start=0):
+        print(f"{i} {project}")
+    project_choice = get_valid_project_choice(projects)
+    selected_project = projects[project_choice]
+    print(selected_project)
+    new_percentage = input("New Percentage: ")
+    if new_percentage:
+        selected_project.completion_percentage = int(new_percentage)
+    new_priority = input("New Priority: ")
+    if new_priority:
+        selected_project.priority = int(new_priority)
+    header, project_lines = save_project_details()
+    project_lines[
+        project_choice] = f"{selected_project.name}\t{selected_project.start_date}\t{selected_project.priority}\t{selected_project.cost_estimate}\t{selected_project.completion_percentage}\n"
+    write_updated_project_details(header, project_lines)
 
 main()
