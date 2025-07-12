@@ -6,6 +6,6 @@
   2. Define constants for values that do not change, improving clarity and reducing errors.
   3. Focus on logical structure—ensure the code flows correctly and produces the expected results.
 
-These resources helped me throughout my journey in CP1404 and CP1404!
+CP1404 Resources!
 - [Programming Patterns page](https://github.com/CP1404/Starter/wiki/Programming-Patterns)
 - [CP1404 Practicals](https://github.com/CP1404/Practicals)
