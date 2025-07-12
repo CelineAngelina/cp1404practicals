@@ -29,18 +29,7 @@ def main():
 
         elif choice == "D":
             projects = load_project(FILENAME)
-            incomplete_projects = [incomplete_project for incomplete_project in projects if incomplete_project.completion_percentage < 100]
-            completed_projects = [completed_project for completed_project in projects if completed_project.completion_percentage >= 100]
-
-            incomplete_projects.sort()
-            print("Incomplete projects:")
-            for projects in incomplete_projects:
-                print(f"\t{projects}")
-
-            completed_projects.sort()
-            print("Completed projects:")
-            for projects in completed_projects:
-                print(f"\t{projects}")
+            display_projects(projects)
 
         elif choice == "F":
             break
@@ -55,6 +44,23 @@ def main():
             print("Invalid choice")
         choice = input(">>> ").upper()
         print("Thank you for using custom-built project management software.")
+
+
+def display_projects(projects):
+    incomplete_projects = [incomplete_project for incomplete_project in projects if
+                           incomplete_project.completion_percentage < 100]
+    completed_projects = [completed_project for completed_project in projects if
+                          completed_project.completion_percentage >= 100]
+    incomplete_projects.sort()
+    completed_projects.sort()
+
+    print("Incomplete projects:")
+    for projects in incomplete_projects:
+        print(f"\t{projects}")
+
+    print("Completed projects:")
+    for projects in completed_projects:
+        print(f"\t{projects}")
 
 
 def load_project(prompt):
