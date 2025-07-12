@@ -11,7 +11,7 @@ MENU = "- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter p
 FILENAME = "projects.txt"
 
 def main():
-    """"""
+    """Run the project management menu system."""
     print("Welcome to Pythonic Project Management")
     projects = load_project(FILENAME)
     print(f"Loaded {len(projects)} projects from {FILENAME}")
