@@ -22,7 +22,7 @@ def main():
         if choice == "L":
             filename = input("Enter the filename: ")
             projects = load_project(filename)
-            display_projects("Projects:", projects)
+            display_projects(projects)
 
         elif choice == "S":
             break
@@ -44,7 +44,7 @@ def main():
             print("Invalid choice")
         print(MENU)
         choice = input(">>> ").upper()
-        print("Thank you for using custom-built project management software.")
+    print("Thank you for using custom-built project management software.")
 
 
 def load_project(prompt):
@@ -72,14 +72,14 @@ def display_completed_and_incomplete_projects(projects):
                           completed_project.completion_percentage >= 100]
     incomplete_projects.sort()
     completed_projects.sort()
+    print("Incomplete projects:")
+    display_projects(incomplete_projects)
+    print("Complete projects:")
+    display_projects(completed_projects)
 
-    display_projects("Incomplete projects:", incomplete_projects)
-    display_projects("Completed projects:", completed_projects)
 
-
-def display_projects(title, projects):
-    """Display list of projects with a given title."""
-    print(title)
+def display_projects(projects):
+    """Display list of projects."""
     for projects in projects:
         print(f"\t{projects}")
 
