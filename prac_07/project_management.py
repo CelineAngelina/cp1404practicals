@@ -1,11 +1,8 @@
 """
 Project Management
 Estimate: 2 hours
-Actual:
-start 11:09
+Actual: 6 hours 22 minutes
 """
-from operator import attrgetter
-from xml.etree.ElementTree import indent
 
 from prac_07.project import Project
 import datetime
