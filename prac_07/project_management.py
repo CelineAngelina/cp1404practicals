@@ -11,13 +11,9 @@ MENU = "- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter p
 FILENAME = "projects.txt"
 
 def main():
-    project_count = 0
     print("Welcome to Pythonic Project Management")
-    with open(FILENAME, 'r') as in_file:
-        in_file.readline()
-        for line in in_file:
-            project_count += 1
-        print(f"Loaded {project_count} projects from {FILENAME}")
+    projects = load_project(FILENAME)
+    print(f"Loaded {len(projects)} projects from {FILENAME}")
     print(MENU)
 
     choice = input(">>> ").upper()
