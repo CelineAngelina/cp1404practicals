@@ -6,5 +6,7 @@ class BoxLayoutKV(App):
        self.root = Builder.load_file('box_layout_demo.kv')
        return self.root
 
+   def handle_greet(self):
+       print("greet")
 
 BoxLayoutKV().run()
