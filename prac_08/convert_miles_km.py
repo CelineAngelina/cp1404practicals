@@ -25,13 +25,19 @@ class ConvertMilesToKm(App):
         self.handle_calculate(self.root.ids.input_number.text)
 
     def handle_increment(self):
-        value = int(self.root.ids.input_number.text)
+        try:
+            value = int(self.root.ids.input_number.text)
+        except ValueError:
+            value = 0
         value += 1
         self.root.ids.input_number.text = str(value)
         self.handle_calculate(value)
 
     def handle_decrement(self):
-        value = int(self.root.ids.input_number.text)
+        try:
+            value = int(self.root.ids.input_number.text)
+        except ValueError:
+            value = 0
         value -= 1
         self.root.ids.input_number.text = str(value)
         self.handle_calculate(value)
