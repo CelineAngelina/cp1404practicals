@@ -9,4 +9,8 @@ class BoxLayoutKV(App):
    def handle_greet(self):
        self.root.ids.output_label.text = f"Hello {self.root.ids.input_name.text}"
 
+   def clear_greet(self):
+       self.root.ids.input_name.text = ""
+       self.root.ids.output_label.text = ""
+
 BoxLayoutKV().run()
