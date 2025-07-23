@@ -1,8 +1,10 @@
 from prac_09.taxi import Taxi
 from prac_09.silver_service_taxi import SilverServiceTaxi
 
-print("Let's drive!")
 MENU = "q)uit, c)hoose taxi, d)rive"
+bill_to_date = 0
+
+print("Let's drive!")
 taxis = [Taxi("Prius", 100), SilverServiceTaxi("Limo", 100, 2), SilverServiceTaxi("Hummer", 200, 4)]
 choice = input(">>> ").lower()
 while choice != "":
@@ -20,5 +22,6 @@ while choice != "":
         pass
     else:
         print("Invalid option")
+    print(f"Bill to date: ${bill_to_date:,.2f}")
     print(MENU)
     choice = input(">>> ").lower()
