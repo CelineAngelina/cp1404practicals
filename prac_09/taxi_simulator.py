@@ -31,6 +31,12 @@ while choice != "q":
 
     else:
         print("Invalid option")
+
     print(f"Bill to date: ${bill_to_date:,.2f}")
     print(MENU)
     choice = input(">>> ").lower()
+
+print(f"Total trip cost: ${bill_to_date}")
+print("Taxis are now:")
+for i, taxi in enumerate(taxis):
+    print(f"{i} - {taxi}")
