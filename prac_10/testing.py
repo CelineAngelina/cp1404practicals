@@ -63,3 +63,19 @@ doctest.testmod()
 # and one more that you decide is a useful test.
 # Run your doctests and watch the tests fail.
 # Then write the body of the function so that the tests pass.
+
+def change_format(sentence):
+    """
+    Changing the format of sentence input to start with capital and ends with full stop
+    >>> change_format("hello")
+    'Hello.'
+    >>> change_format("It is an ex parrot.")
+    'It is an ex parrot.'
+    >>> change_format("welcome to CP1404")
+    'Welcome to CP1404.'
+    """
+    sentence = sentence.strip()
+    sentence = sentence[0].upper() + sentence[1:]
+    if not sentence.endswith("."):
+        sentence += "."
+    return sentence
